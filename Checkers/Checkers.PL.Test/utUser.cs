@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Checkers.PL.Test
+﻿namespace Checkers.PL.Test
 {
-    internal class utUser
+    public class utUser : utBase<tblUser>
     {
+        [TestMethod]
+        public void LoadTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void InsertTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+
+        }
     }
 }
