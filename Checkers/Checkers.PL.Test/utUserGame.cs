@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace Checkers.PL.Test
 {
-    internal class utUserGame
+    [TestClass]
+    public class utUserGame : utBase<tblUserGame>
     {
+        [TestMethod]
+        public void LoadTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void InsertTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+
+        }
     }
 }

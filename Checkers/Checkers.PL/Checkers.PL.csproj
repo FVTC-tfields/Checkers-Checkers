@@ -19,4 +19,8 @@
 	  <Folder Include="Data\" />
 	  <Folder Include="Entities\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Checkers.BL.Models\Checkers.BL.Models.csproj" />
+	</ItemGroup>
 </Project>
