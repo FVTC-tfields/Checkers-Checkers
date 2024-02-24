@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.BL.Models", "Check
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.PL.Test", "Checkers.PL.Test\Checkers.PL.Test.csproj", "{49DB781F-DCD3-4516-B499-A22760FD2472}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Checkers.DB", "Checkers.DB\Checkers.DB.sqlproj", "{E8F80C5B-F364-4110-93CE-D8EA3132722E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.PL", "Checkers.PL\Checkers.PL.csproj", "{AA334D01-A19E-46F1-9A94-CCE59BB15EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.MigrationHandler", "Checkers.MigrationHandler\Checkers.MigrationHandler.csproj", "{584A97FE-20B8-442D-A5AB-B520E61AE1E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,15 +31,14 @@ Global
 		{49DB781F-DCD3-4516-B499-A22760FD2472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49DB781F-DCD3-4516-B499-A22760FD2472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49DB781F-DCD3-4516-B499-A22760FD2472}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8F80C5B-F364-4110-93CE-D8EA3132722E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8F80C5B-F364-4110-93CE-D8EA3132722E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{E8F80C5B-F364-4110-93CE-D8EA3132722E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8F80C5B-F364-4110-93CE-D8EA3132722E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8F80C5B-F364-4110-93CE-D8EA3132722E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{AA334D01-A19E-46F1-9A94-CCE59BB15EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA334D01-A19E-46F1-9A94-CCE59BB15EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA334D01-A19E-46F1-9A94-CCE59BB15EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA334D01-A19E-46F1-9A94-CCE59BB15EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584A97FE-20B8-442D-A5AB-B520E61AE1E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584A97FE-20B8-442D-A5AB-B520E61AE1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584A97FE-20B8-442D-A5AB-B520E61AE1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584A97FE-20B8-442D-A5AB-B520E61AE1E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
