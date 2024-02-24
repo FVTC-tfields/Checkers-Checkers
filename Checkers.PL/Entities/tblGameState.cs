@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Checkers.PL.Entities
 {
-    public class GameState : IEntity
+    public class tblGameState : IEntity
     {
         public Guid Id { get; set; }
         public string Row { get; set; }

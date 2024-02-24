@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Checkers.PL.Entities
+﻿namespace Checkers.PL.Entities
 {
     public interface IEntity
     {
-        public Guid Id { get; set; }
+        Guid Id { get; set; }
+
     }
 }

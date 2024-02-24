@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Checkers.PL
+namespace Checkers.PL.Entities
 {
     public class tblUserGame : IEntity
     {
