@@ -104,14 +104,13 @@ namespace Checkers.PL.Data
 
             });
 
-            List<tblGame> Games = new List<tblGame>
+            List<tblUserGame> UserGames = new List<tblUserGame>
             {
-                new tblGame {Id = gameId[0], Name = "Example", GameDate = DateTime.Now, GameStateId = gameStateId[0], Winner = null},
-                new tblGame {Id = gameId[1], Name = "George", GameDate = DateTime.Now, GameStateId = gameStateId[1], Winner = null},
-                new tblGame {Id = gameId[2], Name = "Hanna", GameDate = DateTime.Now, GameStateId = gameStateId[2], Winner = null},
-                new tblGame {Id = gameId[3], Name = "World War 42", GameDate = DateTime.Now, GameStateId = gameStateId[4], Winner = "MetalWhee3l"}
+                new tblUserGame {Id = userGameId[0], Color = "Red", GameId = gameId[0], UserId = userId[0]},
+                new tblUserGame {Id = userGameId[1], Color = "Black", GameId = gameId[0], UserId = userId[1]},
+                new tblUserGame {Id = userGameId[2], Color = "Red", GameId = gameId[0], UserId = userId[2]},
             };
-            modelBuilder.Entity<tblGame>().HasData(Games);
+            modelBuilder.Entity<tblGame>().HasData(UserGames);
         }
 
         private void CreateGames(ModelBuilder modelBuilder)

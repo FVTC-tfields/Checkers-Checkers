@@ -20,4 +20,8 @@
 	  <ProjectReference Include="..\Checkers.PL\Checkers.PL.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controllers\" />
+	</ItemGroup>
+
 </Project>
