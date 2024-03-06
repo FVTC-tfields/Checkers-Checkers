@@ -13,8 +13,8 @@ namespace Checkers.PL.Entities
         public string Name { get; set; }
         public string Winner { get; set; }
         public DateTime GameDate { get; set; }
-
         public virtual tblGameState GameState { get; set; }
+        public virtual ICollection<tblUserGame> tblUserGames { get; set; }
 
     }
 }

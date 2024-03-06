@@ -14,6 +14,7 @@ namespace Checkers.PL.Entities
         public string Nickname { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        
+        public virtual ICollection<tblUserGame> tblUserGames { get; set; }
+
     }
 }

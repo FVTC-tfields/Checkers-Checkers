@@ -34,19 +34,84 @@ namespace Checkers.PL.Data
             base.OnModelCreating(modelBuilder);
 
             CreateUsers(modelBuilder);
-            CreateGames(modelBuilder);
             CreateGameStates(modelBuilder);
+            CreateGames(modelBuilder);           
             CreateUserGames(modelBuilder);
         }
 
         private void CreateGameStates(ModelBuilder modelBuilder)
         {
+            for (int i = 0; i < gameStateId.Length; i++)
+                gameId[i] = Guid.NewGuid();
 
+            modelBuilder.Entity<tblGameState>( entity => {
+                entity.HasKey(e => e.Id).HasName("PK_tblGameState_Id");
+
+                entity.ToTable("tblGameState");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Row)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.Column)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entity.Property(e => e.IsKing).IsRequired().IsUnicode(false);
+            });
+
+            List<tblGameState> GameStates = new List<tblGameState>
+            {
+                new tblGameState {Id = gameId[0], Row = "1", Column = "4", IsKing = true},
+                new tblGameState {Id = gameId[1], Row = "5", Column = "4", IsKing = false},
+                new tblGameState {Id = gameId[2], Row = "2", Column = "8", IsKing = false},
+                new tblGameState {Id = gameId[3], Row = "1", Column = "10", IsKing = false},
+                new tblGameState {Id = gameId[4], Row = "7", Column = "1", IsKing = true},
+
+            };
+            modelBuilder.Entity<tblGameState>().HasData(GameStates);
         }
 
         private void CreateUserGames(ModelBuilder modelBuilder)
         {
+            for (int i = 0; i < gameId.Length; i++)
+                userGameId[i] = Guid.NewGuid();
 
+            modelBuilder.Entity<tblUserGame>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_tblUserGame_Id");
+
+                entity.ToTable("tblUserGame");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Color)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.tblUserGames)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_tblUserGame_UserId");
+
+                entity.HasOne(d => d.Game)
+                    .WithMany(p => p.tblUserGames)
+                    .HasForeignKey(d => d.GameId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_tblUserGame_GameId");
+
+            });
+
+            List<tblGame> Games = new List<tblGame>
+            {
+                new tblGame {Id = gameId[0], Name = "Example", GameDate = DateTime.Now, GameStateId = gameStateId[0], Winner = null},
+                new tblGame {Id = gameId[1], Name = "George", GameDate = DateTime.Now, GameStateId = gameStateId[1], Winner = null},
+                new tblGame {Id = gameId[2], Name = "Hanna", GameDate = DateTime.Now, GameStateId = gameStateId[2], Winner = null},
+                new tblGame {Id = gameId[3], Name = "World War 42", GameDate = DateTime.Now, GameStateId = gameStateId[4], Winner = "MetalWhee3l"}
+            };
+            modelBuilder.Entity<tblGame>().HasData(Games);
         }
 
         private void CreateGames(ModelBuilder modelBuilder)

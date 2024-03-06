@@ -16,5 +16,13 @@ namespace Checkers.PL.Entities
 
         public string Color { get; set; }
 
+        public virtual tblUser User { get; set; }
+
+        public virtual tblGame Game { get; set; }
+
+        public virtual ICollection<tblGame> tblGames { get; set; }
+
+        public virtual ICollection<tblUser> tblUsers { get; set; }
+
     }
 }
