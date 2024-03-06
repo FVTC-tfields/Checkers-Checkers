@@ -14,5 +14,7 @@ namespace Checkers.PL.Entities
         public string Winner { get; set; }
         public DateTime GameDate { get; set; }
 
+        public virtual tblGameState GameState { get; set; }
+
     }
 }
