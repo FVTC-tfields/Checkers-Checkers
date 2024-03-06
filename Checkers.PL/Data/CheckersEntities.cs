@@ -5,7 +5,7 @@ namespace Checkers.PL.Data
 {
     public class CheckersEntities : DbContext
     {
-        Guid[] userId = new Guid[3];
+        Guid[] userId = new Guid[4];
         Guid[] gameId = new Guid[4];
         Guid[] gameStateId = new Guid[5];
         Guid[] userGameId = new Guid[3];
@@ -63,11 +63,11 @@ namespace Checkers.PL.Data
 
             List<tblGameState> GameStates = new List<tblGameState>
             {
-                new tblGameState {Id = gameId[0], Row = "1", Column = "4", IsKing = true},
-                new tblGameState {Id = gameId[1], Row = "5", Column = "4", IsKing = false},
-                new tblGameState {Id = gameId[2], Row = "2", Column = "8", IsKing = false},
-                new tblGameState {Id = gameId[3], Row = "1", Column = "10", IsKing = false},
-                new tblGameState {Id = gameId[4], Row = "7", Column = "1", IsKing = true},
+                new tblGameState {Id = gameStateId[0], Row = "1", Column = "4", IsKing = true},
+                new tblGameState {Id = gameStateId[1], Row = "5", Column = "4", IsKing = false},
+                new tblGameState {Id = gameStateId[2], Row = "2", Column = "8", IsKing = false},
+                new tblGameState {Id = gameStateId[3], Row = "1", Column = "10", IsKing = false},
+                new tblGameState {Id = gameStateId[4], Row = "7", Column = "1", IsKing = true}
 
             };
             modelBuilder.Entity<tblGameState>().HasData(GameStates);
@@ -108,7 +108,7 @@ namespace Checkers.PL.Data
             {
                 new tblUserGame {Id = userGameId[0], Color = "Red", GameId = gameId[0], UserId = userId[0]},
                 new tblUserGame {Id = userGameId[1], Color = "Black", GameId = gameId[0], UserId = userId[1]},
-                new tblUserGame {Id = userGameId[2], Color = "Red", GameId = gameId[0], UserId = userId[2]},
+                new tblUserGame {Id = userGameId[2], Color = "Red", GameId = gameId[0], UserId = userId[2]}
             };
             modelBuilder.Entity<tblGame>().HasData(UserGames);
         }
