@@ -20,9 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.API.Test", "Checkers.API.Test\Checkers.API.Test.csproj", "{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{DCBD2923-EF22-4220-8B94-3DD820D74DCA}"
-	ProjectSection(SolutionItems) = preProject
-		TextFile1.txt = TextFile1.txt
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.BL.Test", "Checkers.BL.Test\Checkers.BL.Test.csproj", "{1D333AC3-059A-4FFD-9891-A5E81F7905E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +61,10 @@ Global
 		{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
