@@ -12,7 +12,7 @@ namespace Checkers.PL.Test
         [TestMethod]
         public void LoadTest()
         {
-
+            Assert.IsTrue(base.LoadTest().Count() > 0);
         }
 
         [TestMethod]

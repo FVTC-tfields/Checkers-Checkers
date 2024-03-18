@@ -12,7 +12,9 @@ namespace Checkers.PL.Test
         [TestMethod]
         public void LoadTest()
         {
-
+            int expected = 0;
+            var usergames = base.LoadTest();
+            Assert.AreEqual(expected, usergames.Count);
         }
 
         [TestMethod]

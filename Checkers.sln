@@ -13,15 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.PL", "Checkers.PL\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.MigrationHandler", "Checkers.MigrationHandler\Checkers.MigrationHandler.csproj", "{584A97FE-20B8-442D-A5AB-B520E61AE1E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.API", "Checkers.API\Checkers.API.csproj", "{58402C09-5610-4C58-A049-5C247ECA1C7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.API", "Checkers.API\Checkers.API.csproj", "{58402C09-5610-4C58-A049-5C247ECA1C7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.BL", "Checkers.BL\Checkers.BL.csproj", "{89A577F0-F5FB-43E5-A05B-388FC27A0F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.BL", "Checkers.BL\Checkers.BL.csproj", "{89A577F0-F5FB-43E5-A05B-388FC27A0F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.API.Test", "Checkers.API.Test\Checkers.API.Test.csproj", "{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.API.Test", "Checkers.API.Test\Checkers.API.Test.csproj", "{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{DCBD2923-EF22-4220-8B94-3DD820D74DCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.BL.Test", "Checkers.BL.Test\Checkers.BL.Test.csproj", "{1D333AC3-059A-4FFD-9891-A5E81F7905E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.BL.Test", "Checkers.BL.Test\Checkers.BL.Test.csproj", "{1D333AC3-059A-4FFD-9891-A5E81F7905E0}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Initial", "Initial\Initial.pyproj", "{5B52F631-D7F5-4401-B6F0-23EA37115B98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,8 @@ Global
 		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B52F631-D7F5-4401-B6F0-23EA37115B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B52F631-D7F5-4401-B6F0-23EA37115B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
