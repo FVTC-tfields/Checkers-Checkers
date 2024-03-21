@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.BL.Test", "Checkers.BL.Test\Checkers.BL.Test.csproj", "{1D333AC3-059A-4FFD-9891-A5E81F7905E0}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Initial", "Initial\Initial.pyproj", "{5B52F631-D7F5-4401-B6F0-23EA37115B98}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Checkers.Web", "Checkers.Web\Checkers.Web.pyproj", "{36BFE748-1EFF-4BCD-92D8-5D8D10D7E6D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,8 +67,10 @@ Global
 		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D333AC3-059A-4FFD-9891-A5E81F7905E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B52F631-D7F5-4401-B6F0-23EA37115B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B52F631-D7F5-4401-B6F0-23EA37115B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BFE748-1EFF-4BCD-92D8-5D8D10D7E6D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BFE748-1EFF-4BCD-92D8-5D8D10D7E6D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BFE748-1EFF-4BCD-92D8-5D8D10D7E6D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BFE748-1EFF-4BCD-92D8-5D8D10D7E6D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
