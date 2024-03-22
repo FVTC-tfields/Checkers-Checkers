@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Checkers.BL.Models\Checkers.BL.Models.csproj" />
     <ProjectReference Include="..\Checkers.BL\Checkers.BL.csproj" />
     <ProjectReference Include="..\Checkers.PL\Checkers.PL.csproj" />
+	  <ProjectReference Include="..\Checkers.Reporting\Checkers.Reporting.csproj" />
   </ItemGroup>
 
 </Project>
