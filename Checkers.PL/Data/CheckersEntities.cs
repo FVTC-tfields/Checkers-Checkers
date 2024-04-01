@@ -138,9 +138,9 @@ namespace Checkers.PL.Data
                     .HasMaxLength(50)
                     .IsUnicode(false);
                 entity.Property(e => e.Winner)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
                 entity.Property(e => e.GameDate).HasColumnType("datetime");
 
                 entity.Property(e => e.GameStateId)
@@ -157,9 +157,9 @@ namespace Checkers.PL.Data
 
             List<tblGame> Games = new List<tblGame>
             {
-                new tblGame {Id = gameId[0], Name = "Example", GameDate = DateTime.Now, GameStateId = gameStateId[0], Winner = null},
-                new tblGame {Id = gameId[1], Name = "George", GameDate = DateTime.Now, GameStateId = gameStateId[1], Winner = null},
-                new tblGame {Id = gameId[2], Name = "Hanna", GameDate = DateTime.Now, GameStateId = gameStateId[2], Winner = null},
+                new tblGame {Id = gameId[0], Name = "Example", GameDate = DateTime.Now, GameStateId = gameStateId[0], Winner = ""},
+                new tblGame {Id = gameId[1], Name = "George", GameDate = DateTime.Now, GameStateId = gameStateId[1], Winner = ""},
+                new tblGame {Id = gameId[2], Name = "Hanna", GameDate = DateTime.Now, GameStateId = gameStateId[2], Winner = ""},
                 new tblGame {Id = gameId[3], Name = "World War 42", GameDate = DateTime.Now, GameStateId = gameStateId[4], Winner = "MetalWhee3l"}
             };
             modelBuilder.Entity<tblGame>().HasData(Games);

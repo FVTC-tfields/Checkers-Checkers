@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#nullable disable
 
 namespace Checkers.PL.Entities
 {
@@ -14,7 +10,7 @@ namespace Checkers.PL.Entities
         public string Winner { get; set; }
         public DateTime GameDate { get; set; }
         public virtual tblGameState GameState { get; set; }
-        public virtual ICollection<tblUserGame> tblUserGames { get; set; }
+        //public virtual ICollection<tblUserGame> tblUserGames { get; set; }
 
     }
 }
