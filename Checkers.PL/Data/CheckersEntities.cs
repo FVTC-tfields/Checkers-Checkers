@@ -42,7 +42,7 @@ namespace Checkers.PL.Data
         private void CreateGameStates(ModelBuilder modelBuilder)
         {
             for (int i = 0; i < gameStateId.Length; i++)
-                gameId[i] = Guid.NewGuid();
+                gameStateId[i] = Guid.NewGuid();
 
             modelBuilder.Entity<tblGameState>( entity => {
                 entity.HasKey(e => e.Id).HasName("PK_tblGameState_Id");
@@ -75,7 +75,7 @@ namespace Checkers.PL.Data
 
         private void CreateUserGames(ModelBuilder modelBuilder)
         {
-            for (int i = 0; i < gameId.Length; i++)
+            for (int i = 0; i < userGameId.Length; i++)
                 userGameId[i] = Guid.NewGuid();
 
             modelBuilder.Entity<tblUserGame>(entity =>
@@ -89,18 +89,26 @@ namespace Checkers.PL.Data
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-                
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.tblUserGames)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_tblUserGame_UserId");
 
-                entity.HasOne(d => d.Game)
-                    .WithMany(p => p.tblUserGames)
-                    .HasForeignKey(d => d.GameId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_tblUserGame_GameId");
+                //entity.HasOne(d => d.User)
+                //    .WithMany(p => p.tblUserGames)
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("fk_tblUserGame_UserId");
+
+                //entity.HasOne(d => d.Game)
+                //    .WithMany(p => p.tblUserGames)
+                //    .HasForeignKey(d => d.GameId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("fk_tblUserGame_GameId");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GameId)
+                    .IsRequired()
+                    .IsUnicode(false);
 
             });
 
@@ -135,11 +143,15 @@ namespace Checkers.PL.Data
                     .IsUnicode(false);
                 entity.Property(e => e.GameDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.GameState)
-                    .WithMany(p => p.tblGames)
-                    .HasForeignKey(d => d.GameStateId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_tblGame_GameStateId");
+                entity.Property(e => e.GameStateId)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                //entity.HasOne(d => d.GameState)
+                //    .WithMany(p => p.tblGames)
+                //    .HasForeignKey(d => d.GameStateId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("fk_tblGame_GameStateId");
 
             });
 

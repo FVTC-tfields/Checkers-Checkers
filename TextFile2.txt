@@ -1,0 +1,4 @@
+Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=Checkers.DB;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -Context CheckersEntities -UseDatabaseNames -force
+
+Add-Migration CreateDatabase
+Update-Database

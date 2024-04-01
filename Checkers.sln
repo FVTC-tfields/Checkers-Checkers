@@ -19,13 +19,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.BL", "Checkers.BL\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.API.Test", "Checkers.API.Test\Checkers.API.Test.csproj", "{39A75B8A-C8CA-4A86-9C4A-6E4ABB47E658}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{DCBD2923-EF22-4220-8B94-3DD820D74DCA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.BL.Test", "Checkers.BL.Test\Checkers.BL.Test.csproj", "{1D333AC3-059A-4FFD-9891-A5E81F7905E0}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Checkers.Web", "Checkers.Web\Checkers.Web.pyproj", "{36BFE748-1EFF-4BCD-92D8-5D8D10D7E6D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.Reporting", "Checkers.Reporting\Checkers.Reporting.csproj", "{39A7F117-B828-440C-8094-74D4ABA145F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.Reporting", "Checkers.Reporting\Checkers.Reporting.csproj", "{39A7F117-B828-440C-8094-74D4ABA145F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C04F84FC-5B96-4687-9B9B-9372CF196E2D}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile2.txt = TextFile2.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
