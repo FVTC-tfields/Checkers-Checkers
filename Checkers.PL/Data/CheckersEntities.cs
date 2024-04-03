@@ -118,7 +118,7 @@ namespace Checkers.PL.Data
                 new tblUserGame {Id = userGameId[1], Color = "Black", GameId = gameId[0], UserId = userId[1]},
                 new tblUserGame {Id = userGameId[2], Color = "Red", GameId = gameId[0], UserId = userId[2]}
             };
-            modelBuilder.Entity<tblGame>().HasData(UserGames);
+            modelBuilder.Entity<tblUserGame>().HasData(UserGames);
         }
 
         private void CreateGames(ModelBuilder modelBuilder)
@@ -203,6 +203,7 @@ namespace Checkers.PL.Data
                 FirstName = "Barney",
                 LastName = "Smith",
                 UserName = "MetalWhee3l",
+                Nickname = "Nickname",
                 Password = GetHash("maple")
             });
             modelBuilder.Entity<tblUser>().HasData(new tblUser
@@ -211,6 +212,7 @@ namespace Checkers.PL.Data
                 FirstName = "John",
                 LastName = "Doro",
                 UserName = "jdoro",
+                Nickname = "Nickname",
                 Password = GetHash("maple")
             });
             modelBuilder.Entity<tblUser>().HasData(new tblUser
@@ -219,6 +221,7 @@ namespace Checkers.PL.Data
                 FirstName = "Brian",
                 LastName = "Foote",
                 UserName = "bfoote",
+                Nickname = "Nickname",
                 Password = GetHash("maple")
             });
 
@@ -228,6 +231,7 @@ namespace Checkers.PL.Data
                 FirstName = "Other",
                 LastName = "Other",
                 UserName = "sophie",
+                Nickname = "Nickname",
                 Password = GetHash("sophie")
             });
         }
