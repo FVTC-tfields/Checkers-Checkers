@@ -67,7 +67,7 @@ public class Program
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapHub<CheckersHub>("/bingoHub");
+            endpoints.MapHub<CheckersHub>("/checkersHub");
         });
 
         app.Run();
