@@ -11,6 +11,7 @@ namespace Checkers.PL.Entities
         public DateTime GameDate { get; set; }
         public virtual tblGameState GameState { get; set; }
         //public virtual ICollection<tblUserGame> tblUserGames { get; set; }
+        public string SortField { get { return Name; } }
 
     }
 }

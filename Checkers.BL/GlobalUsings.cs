@@ -6,3 +6,6 @@ global using System.Linq;
 global using Checkers.BL.Models;
 global using Checkers.PL.Data;
 global using Checkers.PL.Entities;
+global using Microsoft.Extensions.Logging;
+global using System.Linq.Expressions;
+global using System.Threading.Tasks;
