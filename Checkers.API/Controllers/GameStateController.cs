@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Checkers.API.Controllers
+﻿namespace Checkers.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameStateController : ControllerBase
+    public class GameStateController : GenericController<GameState, GameStateManager>
     {
+        public GameStateController(ILogger<GameStateController> logger,
+                                DbContextOptions<CheckersEntities> options) : base(logger, options)
+        {
+        }
+
     }
 }
