@@ -4,5 +4,12 @@
         <name>Checkers.API</name>
     </assembly>
     <members>
+        <member name="T:Checkers.API.Controllers.GenericController`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="U"></typeparam>
+        </member>
     </members>
 </doc>
