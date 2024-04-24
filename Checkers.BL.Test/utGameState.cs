@@ -16,6 +16,12 @@ namespace Checkers.BL.Test
         }
 
         [TestMethod]
+        public void LoadByIdTest()
+        {
+
+        }
+
+        [TestMethod]
         public void InsertTest()
         {
 
