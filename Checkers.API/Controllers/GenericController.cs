@@ -66,9 +66,9 @@ namespace Checkers.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-        /*
+
         [HttpPut("{id}/{rollback?}")]
-        public int Put(Guid id, [FromBody] Format format, bool rollback = false)
+        public int Put(Guid id, [FromBody] Game format, bool rollback = false)
         {
             try
             {
@@ -91,6 +91,6 @@ namespace Checkers.API.Controllers
             {
                 throw;
             }
-        }*/
+        }
     }
 }
