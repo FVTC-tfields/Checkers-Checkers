@@ -22,6 +22,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Checkers.py" />
+    <Compile Include="server.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Photo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Photo\black_king.png" />
+    <Content Include="Photo\black_piece.png" />
+    <Content Include="Photo\red_king.png" />
+    <Content Include="Photo\red_piece.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
