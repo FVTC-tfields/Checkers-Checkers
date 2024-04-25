@@ -5,7 +5,7 @@
         public GameStateManager(DbContextOptions<CheckersEntities> options) : base(options) { }
         public GameStateManager(ILogger logger, DbContextOptions<CheckersEntities> options) : base(logger, options) { }
 
-        public List<GameState> LoadTest()
+        public List<GameState> Load()
         {
             try
             {

@@ -8,7 +8,7 @@ namespace Checkers.BL
         public GameManager(DbContextOptions<CheckersEntities> options) : base(options) { }
         public GameManager(ILogger logger, DbContextOptions<CheckersEntities> options) : base(logger, options) { }
 
-        public List<Game> LoadTest()
+        public List<Game> Load()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Checkers.BL
                     GameDate = game.GameDate
                 };
                 game.Id = row.Id;
-                return base.Insert(row, e => e.GameStateId == game.GameStateId, rollback);
+                return base.Insert(row, e => e.Name == game.Name, rollback);
 
             }
             catch (Exception)
@@ -141,14 +141,14 @@ namespace Checkers.BL
         {
             try
             {
-                int results = base.Update(new tblGame
+                return base.Update(new tblGame
                 {
                     Id = game.Id,
                     GameStateId = game.GameStateId,
                     Name = game.Name,
-                    Winner = game.Winner
+                    Winner = game.Winner,
+                    GameDate = game.GameDate
                 }, rollback);
-                return results;
             }
             catch (Exception)
             {
