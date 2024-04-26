@@ -135,13 +135,13 @@
         {
             try
             {
-                int results = base.Update(new tblGameState
+                return base.Update(new tblGameState
                 {
+                    Id = gameState.Id,
                     Column = gameState.Column,
                     IsKing = gameState.IsKing,
                     Row = gameState.Row
                 }, rollback);
-                return results;
             }
             catch (Exception)
             {

@@ -7,7 +7,7 @@
         public UserGameManager(DbContextOptions<CheckersEntities> options) : base(options) { }
         public UserGameManager(ILogger logger, DbContextOptions<CheckersEntities> options) : base(logger, options) { }
 
-        public List<UserGame> LoadTest()
+        public List<UserGame> Load()
         {
             try
             {
@@ -141,7 +141,8 @@
                 {
                     UserId = userGame.UserId,
                     GameId = userGame.GameId,
-                    Color = userGame.Color
+                    Color = userGame.Color,
+                    Id = userGame.Id
                 }, rollback);
                 return results;
             }

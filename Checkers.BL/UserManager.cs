@@ -68,6 +68,7 @@
                                     user.LastName = userrow.LastName;
                                     user.UserName = userrow.UserName;
                                     user.Password = userrow.Password;
+                                    user.NickName = userrow.Nickname;
                                     return true;
                                 }
                                 else
@@ -110,7 +111,8 @@
                         FirstName = u.FirstName,
                         LastName = u.LastName,
                         UserName = u.UserName,
-                        Password = u.Password
+                        Password = u.Password,
+                        NickName = u.Nickname
                     }));
 
                 return users;
@@ -137,7 +139,8 @@
                                 FirstName = u.FirstName,
                                 LastName = u.LastName,
                                 UserName = u.UserName,
-                                Password = u.Password
+                                Password = u.Password,
+                                NickName = u.Nickname
                             }).FirstOrDefault();
                 }
 
@@ -175,6 +178,7 @@
                         newUser.LastName = user.LastName.Trim();
                         newUser.UserName = user.UserName.Trim();
                         newUser.Password = GetHash(user.Password.Trim());
+                        newUser.Nickname = user.NickName.Trim();
 
                         user.Id = newUser.Id;
 
@@ -221,6 +225,7 @@
                             upDateRow.LastName = user.LastName.Trim();
                             upDateRow.UserName = user.UserName.Trim();
                             upDateRow.Password = GetHash(user.Password.Trim());
+                            upDateRow.Nickname = user.NickName.Trim();
 
                             dc.tblUsers.Update(upDateRow);
 

@@ -12,31 +12,49 @@ namespace Checkers.BL.Test
         [TestMethod]
         public void LoadTest()
         {
+            List<GameState> gameStates = new GameStateManager(options).Load();
+            int expected = 5;
 
+            Assert.AreEqual(expected, gameStates.Count);
         }
 
         [TestMethod]
         public void LoadByIdTest()
         {
-
+            GameState gameState = new GameStateManager(options).Load().FirstOrDefault();
+            Assert.AreEqual(new GameStateManager(options).LoadById(gameState.Id).Id, gameState.Id);
         }
 
         [TestMethod]
         public void InsertTest()
         {
+            
+            GameState gameState = new GameState
+            {
+                Row = "8",
+                Column = "2",
+                IsKing = true
 
+            };
+
+            int result = new GameStateManager(options).Insert(gameState, true);
+            Assert.IsTrue(result > 0);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            GameState gameState = new GameStateManager(options).Load().FirstOrDefault();
+            gameState.IsKing = true;
 
+            Assert.IsTrue(new GameStateManager(options).Update(gameState, true) > 0);
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-
+            GameState gameState = new GameStateManager(options).Load().FirstOrDefault();
+            Assert.IsTrue(new GameStateManager(options).Delete(gameState.Id, true) > 0);
         }
     }
 }
