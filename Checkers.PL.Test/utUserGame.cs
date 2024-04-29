@@ -21,18 +21,40 @@ namespace Checkers.PL.Test
         public void InsertTest()
         {
 
+            int rowsAffected = InsertTest(new tblUserGame
+            {
+                Id = Guid.NewGuid(),
+                Color = "Black",
+                UserId = base.LoadTest().FirstOrDefault().UserId,
+                GameId = base.LoadTest().FirstOrDefault().GameId
+            }) ;
+            Assert.AreEqual(1, rowsAffected);
         }
 
         [TestMethod]
         public void UpdateTest()
         {
+            tblUserGame row = base.LoadTest().FirstOrDefault();
 
+            if (row != null)
+            {
+                row.Color = "Red";
+                int rowsAffected = UpdateTest(row);
+                Assert.AreEqual(1, rowsAffected);
+            }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
+            tblUserGame row = dc.tblUserGames.FirstOrDefault();
 
+            if (row != null)
+            {
+                int rowsAffected = DeleteTest(row);
+
+                Assert.IsTrue(rowsAffected == 1);
+            }
         }
     }
 }

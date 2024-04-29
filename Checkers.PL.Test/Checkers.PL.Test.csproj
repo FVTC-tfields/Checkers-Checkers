@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Checkers.BL\Checkers.BL.csproj" />
     <ProjectReference Include="..\Checkers.PL\Checkers.PL.csproj" />
   </ItemGroup>
 
