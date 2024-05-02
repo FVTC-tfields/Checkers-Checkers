@@ -12,7 +12,7 @@
         <div class="row">
             @for (int j = 0; j < 8; j++)
             {
-                <div class="cell">
+                <div class="cell" data-index="@((i * 8) + j)">
                     @if ((i < 3 && (i + j) % 2 == 0))
                     {
                         <div class="piece player1"></div>
@@ -26,5 +26,5 @@
         </div>
     }
 </div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/signalr.js"></script>
 <script src="~/js/game.js"></script>

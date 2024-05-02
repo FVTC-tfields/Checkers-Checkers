@@ -2,10 +2,12 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
 
+var selectedCell;
+
 function updateCheckerboard(gameState) {
     var cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
-        cell.classList.remove('player1', 'player2', 'king');
+        cell.classList.remove('player1', 'player2', 'king', 'selected');
     });
 
     for (var i = 0; i < 8; i++) {
@@ -28,15 +30,29 @@ connection.on("ReceiveGameState", function (gameState) {
     updateCheckerboard(gameState);
 });
 
-connection.start().catch(function (err) {
-    return console.error(err.toString());
+connection.start().then(function () {
+    console.log('Connection started');
+}).catch(function (err) {
+    console.error(err.toString());
+    alert('Could not connect to the game server. Please refresh the page to try again.');
 });
 
-document.getElementById("moveButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var move = document.getElementById("moveInput").value;
-    connection.invoke("SendMove", user, move).catch(function (err) {
-        return console.error(err.toString());
+connection.onclose(function () {
+    alert('Connection to the game server was lost. Please refresh the page to reconnect.');
+});
+
+document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', function (event) {
+        if (selectedCell) {
+            var move = selectedCell.dataset.index + ' ' + cell.dataset.index;
+            connection.invoke("SendMove", 'user', move).catch(function (err) {
+                return console.error(err.toString());
+            });
+            selectedCell.classList.remove('selected');
+            selectedCell = null;
+        } else if (cell.classList.contains('player1') || cell.classList.contains('player2')) {
+            selectedCell = cell;
+            selectedCell.classList.add('selected');
+        }
     });
-    event.preventDefault();
 });

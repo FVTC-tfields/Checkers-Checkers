@@ -24,15 +24,22 @@ public class GameHub : Hub
     public async Task SendMove(string user, string move)
     {
         var parts = move.Split(' ');
-        var startX = int.Parse(parts[0]);
-        var startY = int.Parse(parts[1]);
-        var endX = int.Parse(parts[2]);
-        var endY = int.Parse(parts[3]);
+        var startIndex = int.Parse(parts[0]);
+        var endIndex = int.Parse(parts[1]);
+
+        var startX = startIndex / 8;
+        var startY = startIndex % 8;
+        var endX = endIndex / 8;
+        var endY = endIndex % 8;
 
         if (!ValidateMove(startX, startY, endX, endY, gameState[startX, startY]))
         {
             return;
         }
+
+        // Move the piece in the game state
+        gameState[endX, endY] = gameState[startX, startY];
+        gameState[startX, startY] = 0;
 
         // Upgrade to king
         if (endX == 0 && gameState[endX, endY] == 1)
@@ -86,27 +93,41 @@ public class GameHub : Hub
         // Check if capture
         if (Math.Abs(endX - startX) == 2 && Math.Abs(endY - startY) == 2)
         {
-            // Captured - remove piece
-            gameState[(startX + endX) / 2, (startY + endY) / 2] = 0;
+            int midX = (startX + endX) / 2;
+            int midY = (startY + endY) / 2;
 
+            // Check if the piece being jumped over is an opponent's
+            if (gameState[midX, midY] == 0 || gameState[midX, midY] == piece || gameState[midX, midY] == piece + 2)
+            {
+                return false;
+            }
+
+            // Capture is valid - update game state
+            gameState[midX, midY] = 0;
             gameState[endX, endY] = gameState[startX, startY];
             gameState[startX, startY] = 0;
+            return true;
+        }
 
-            // Multiple capture
-            if (isKing && (
-                ValidateMove(endX, endY, endX + 2, endY + 2, piece) ||
-                ValidateMove(endX, endY, endX + 2, endY - 2, piece) ||
-                ValidateMove(endX, endY, endX - 2, endY + 2, piece) ||
-                ValidateMove(endX, endY, endX - 2, endY - 2, piece)))
+        // Add validation for normal moves
+        else if (Math.Abs(endX - startX) == 1 && Math.Abs(endY - startY) == 1)
+        {
+            // Check if the destination square is empty
+            if (gameState[endX, endY] != 0)
             {
-                return true;
+                return false;
             }
-            else if (!isKing && (
-                ValidateMove(endX, endY, endX + 2, endY + 2, piece) ||
-                ValidateMove(endX, endY, endX + 2, endY - 2, piece)))
+
+            // Check if the move is forward for normal pieces
+            if (!isKing && ((piece == 1 && endX <= startX) || (piece == 2 && endX >= startX)))
             {
-                return true;
+                return false;
             }
+
+            // Move is valid - update game state
+            gameState[endX, endY] = gameState[startX, startY];
+            gameState[startX, startY] = 0;
+            return true;
         }
 
         return false;
