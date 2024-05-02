@@ -74,7 +74,7 @@ class ServerGame:
 
 game = ServerGame(socketio)
 
-@app.route('/')
+@app.route('/gameHub')
 def index():
     return "Checkers Game Server"
 

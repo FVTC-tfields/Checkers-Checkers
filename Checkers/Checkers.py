@@ -165,18 +165,38 @@ class Board:
         self.print_board()
 
 
+class InitialScreen:
+    def __init__(self, game):
+        self.root = tk.Tk()
+        self.root.geometry("605x645")
+        self.game = game
+        self.start_button = tk.Button(self.root, text="Start Game", command=self.start_game)
+        self.start_button.pack()
+        self.root.mainloop()
+
+    def start_game(self):
+        self.root.destroy()
+        self.game.start_game()
+
+
 class Game:
     def __init__(self, sio):
+        self.sio = sio
+        self.board = None
+
+    def start_game(self):
         root = tk.Tk()
         root.geometry("605x645")
-        self.board = Board(root, sio)
+        self.board = Board(root, self.sio)
         self.turn = "W"
         self.board.print_board()
         root.mainloop()
 
+
 sio = socketio.Client()
 
 game = Game(sio)
+initial_screen = InitialScreen(game)
 
 @sio.event
 def connect():
