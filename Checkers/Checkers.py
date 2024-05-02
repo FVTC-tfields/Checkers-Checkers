@@ -24,7 +24,7 @@ class Board:
         self.black_piece_image = tk.PhotoImage(file="Photo/black_piece.png")
         self.red_piece_image = tk.PhotoImage(file="Photo/red_piece.png")
         self.black_king_image = tk.PhotoImage(file="Photo/black_king.png")
-        self.red_king_image = tk.PhotoImage(file="Photo/black_king.png")
+        self.red_king_image = tk.PhotoImage(file="Photo/red_king.png")
 
     def create_board(self):
         board = [[None for _ in range(8)] for _ in range(8)]
@@ -58,21 +58,45 @@ class Board:
                 label.grid(row=i, column=j)
                 label.bind("<Button-1>", lambda event, x=i, y=j: self.on_click(event, x, y))
 
+    def can_capture(self, piece, position):
+        x, y = position
+        for dx, dy in [(-2, -2), (-2, 2), (2, -2), (2, 2)]:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < 8 and 0 <= ny < 8:
+                if self.board[(x + nx) // 2][(y + ny) // 2] is not None and \
+                   self.board[(x + nx) // 2][(y + ny) // 2].color != piece.color and \
+                   self.board[nx][ny] is None:
+                    return True
+        return False
+
     def on_click(self, event, x, y):
+        piece = self.board[x][y]
         if self.selected_piece is None:
-            piece = self.board[x][y]
             if piece is not None and piece.color == self.turn:
                 self.selected_piece = piece
                 self.selected_square = (x, y)
         else:
-            if self.validate_move(self.selected_piece, self.selected_square, (x, y)):
-                move = {'start': self.selected_square, 'end': (x, y)}
-                #self.sio.emit('send move', {'move': move})
-                self.move_piece(self.selected_piece, self.selected_square, (x, y))
+            if (x, y) == self.selected_square:
+                # Deselect the piece if the same piece is clicked again
                 self.selected_piece = None
                 self.selected_square = None
-                self.print_board()
-                self.switch_turn()
+            elif self.validate_move(self.selected_piece, self.selected_square, (x, y)):
+                move = {'start': self.selected_square, 'end': (x, y)}
+                self.pending_move = move  # Store the move to be sent later
+                self.move_piece(self.selected_piece, self.selected_square, (x, y))
+                if abs(self.selected_square[0] - x) == 2 and abs(self.selected_square[1] - y) == 2:
+                    if self.can_capture(self.selected_piece, (x, y)):
+                        self.selected_square = (x, y)
+                    else:
+                        self.selected_piece = None
+                        self.selected_square = None
+                        self.print_board()
+                        self.switch_turn()
+                else:
+                    self.selected_piece = None
+                    self.selected_square = None
+                    self.print_board()
+                    self.switch_turn()
                 winner = self.check_win()
                 if winner is not None:
                     self.announce_winner(winner)
@@ -87,27 +111,26 @@ class Board:
     def validate_move(self, piece, start, end):
         if self.board[end[0]][end[1]] is not None:
             return False
-        if piece.king:
-            if abs(start[0] - end[0]) != 1 and abs(start[0] - end[0]) != 2:
-                return False
-        else:
-            if piece.color == "R" and start[0] - end[0] != 1 and start[0] - end[0] != 2:
-                return False
-            if piece.color == "B" and end[0] - start[0] != 1 and end[0] - start[0] != 2:
-                return False
+        if abs(start[0] - end[0]) != 1 and abs(start[0] - end[0]) != 2:
+            return False
         if abs(start[1] - end[1]) != 1 and abs(start[1] - end[1]) != 2:
             return False
         if abs(start[0] - end[0]) == 2 and self.board[(start[0] + end[0]) // 2][(start[1] + end[1]) // 2] is None:
+            return False
+        if abs(start[0] - end[0]) == 2 and self.board[(start[0] + end[0]) // 2][(start[1] + end[1]) // 2].color == piece.color:
+            return False
+        if not piece.king and ((piece.color == "R" and start[0] < end[0]) or (piece.color == "B" and start[0] > end[0])):
             return False
         return True
 
     def move_piece(self, piece, start, end):
         self.board[start[0]][start[1]] = None
         self.board[end[0]][end[1]] = piece
-        if start[0] - end[0] == 2:
+        if abs(start[0] - end[0]) == 2:
             self.board[(start[0] + end[0]) // 2][(start[1] + end[1]) // 2] = None
-        elif end[0] - start[0] == 2:
-            self.board[(start[0] + end[0]) // 2][(start[1] + end[1]) // 2] = None
+            self.selected_piece = piece
+            self.selected_square = end
+            self.print_board()
         if end[0] == 0 or end[0] == 7:
             piece.king = True
 
@@ -158,6 +181,9 @@ game = Game(sio)
 @sio.event
 def connect():
     print('connection established')
+    if game.board.pending_move is not None:
+        sio.emit('send move', {'move': game.board.pending_move})
+        game.board.pending_move = None
 
 @sio.event
 def disconnect():
