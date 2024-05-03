@@ -1,5 +1,43 @@
-﻿@{
+﻿@using Checkers.UI2.Models;
+
+@{
     ViewData["Title"] = "Checkers Game";
+    GameHub gameHub = new GameHub();
+    List<GamePiece> blackPieces = new List<GamePiece>();
+    List<GamePiece> redPieces = new List<GamePiece>();
+
+    void OnInitialized()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = (i + 1) % 2; j < 8; j += 2)
+            {
+                blackPieces.Add(new GamePiece
+                        {
+                            Color = "Black",
+                            column = j,
+                            row = i,
+                            direction = Direction.Down
+                        });
+            }
+        }
+
+        for (int i = 5; i < 8; i++)
+        {
+            for (int j = (i + 1) % 2; j < 8; j += 2)
+            {
+                redPieces.Add(new GamePiece
+                        {
+                            Color = "Red",
+                            column = j,
+                            row = i,
+                            direction = Direction.Down
+                        });
+            }
+        }
+    }
+   
+    GamePiece activePiece = null;
 }
 
 <div class="text-center">
@@ -12,19 +50,33 @@
         <div class="row">
             @for (int j = 0; j < 8; j++)
             {
+                var checker = blackPieces.FirstOrDefault(n => n.column == j && n.row == i);
+
+                if (checker == null)
+                {
+                    checker = redPieces.FirstOrDefault(n => n.column == j && n.row == i);
+                }
+
                 <div class="cell" data-index="@((i * 8) + j)">
                     @if ((i < 3 && (i + j) % 2 == 0))
-                    {
-                        <div class="piece player1"></div>
+                    {                       
+                        <div class="piece player1 @(checker == activePiece ? "piece-outline" : "")"
+                                onclick="() => {activePiece = checker;}">
+                        </div>
+                                               
                     }
                     else if (i > 4 && (i + j) % 2 == 0)
                     {
-                        <div class="piece player2"></div>
+                        <div class="piece player2">
+
+                        </div>
                     }
                 </div>
+             
             }
         </div>
     }
 </div>
 <script src="~/js/signalr.js"></script>
 <script src="~/js/game.js"></script>
+
