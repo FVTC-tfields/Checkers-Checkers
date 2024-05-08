@@ -1,7 +1,17 @@
-using Microsoft.EntityFrameworkCore;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using Checkers.API.Hubs;
 using Checkers.PL.Data;
+using Microsoft.Azure.KeyVault;
+using Microsoft.Azure.KeyVault.Models;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Ui.MsSqlServerProvider;
+using Serilog.Ui.Web;
+using System;
 using System.Reflection;
+using WebApi.Helpers;
+using WebApi.Services;
 public class Program
 {
     private static void Main(string[] args)
@@ -42,14 +52,50 @@ public class Program
 
         });
 
+
+        //string connectionString = GetSecret("Checkers-ConnectionString").Result;
+
         // Add Connection information
         builder.Services.AddDbContextPool<CheckersEntities>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("CheckersConnection"));
-            options.UseLazyLoadingProxies();
+            //options.UseSqlServer(connectionString);
+            //options.UseLazyLoadingProxies();
         });
 
+        // configure strongly typed settings object
+        builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+        // configure DI for application services
+        builder.Services.AddScoped<IUserService, UserService>();
+
+        string connection = builder.Configuration.GetConnectionString("CheckersConnection");
+
+        builder.Services.AddSerilogUi(options =>
+        {
+            options.UseSqlServer(connection, "Logs");
+        });
+
+        var configSettings = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(configSettings)
+            .CreateLogger();
+
+        builder.Services
+            .AddLogging(c => c.AddDebug())
+            .AddLogging(c => c.AddSerilog())
+            .AddLogging(c => c.AddEventLog())
+            .AddLogging(c => c.AddConsole());
+
         var app = builder.Build();
+
+        app.UseSerilogUi(options =>
+        {
+            options.RoutePrefix = "logs";
+        });
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment() || true)
@@ -57,6 +103,9 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        // custom jwt auth middleware
+        app.UseMiddleware<JwtMiddleware>();
 
         app.UseHttpsRedirection();
         app.UseRouting();
@@ -72,4 +121,27 @@ public class Program
 
         app.Run();
     }
+
+    public static async Task<string> GetSecret(string secretName)
+    {
+        try
+        {
+            //const string secretName = "Checkers-ConnectionString";
+            var keyVaultName = "kv-300054183";
+            var kvUri = $"https://{keyVaultName}.vault.azure.net";
+
+            var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+            //using var client = GetClient();
+            var secret = await client.GetSecretAsync(secretName);
+            Console.WriteLine(secret.Value.Value.ToString());
+            return secret.Value.Value.ToString();
+            //return (await client.GetSecretAsync(kvUri, secretName)).Value.ToString();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
 }
