@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BDF.Utility\BDF.Utility.csproj" />
+    <ProjectReference Include="..\Checkers.BL.Models\Checkers.BL.Models.csproj" />
+    <ProjectReference Include="..\Checkers.BL\Checkers.BL.csproj" />
+  </ItemGroup>
+
 </Project>
