@@ -193,7 +193,7 @@ class LoginScreen:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        if username == "bfoote" and password == "maple" or (username == "kvicchiollo" and password == "password") or (username == "tfields" and password == "larry"):
+        if (username == "kvicchiollo" and password == "password") or (username == "tfields" and password == "larry"):
             self.root.destroy()
             InitialScreen(self.game, username)
         else:

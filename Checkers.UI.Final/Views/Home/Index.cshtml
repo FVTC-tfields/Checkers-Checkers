@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Checkers Game";
+    ViewData["Title"] = "Checkers";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Checkers</h1>
+    <h1 class="display-4">Checkers</h1>
 </div>
+
 <hr />
 
 <div id="board">
@@ -38,8 +39,8 @@
     }
 
     .cell {
-        width: 50px;
-        height: 50px;
+        width: 100px;
+        height: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -54,9 +55,9 @@
     }
 
     .piece {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%; /* Make the pieces circular */
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
         position: relative;
     }
 

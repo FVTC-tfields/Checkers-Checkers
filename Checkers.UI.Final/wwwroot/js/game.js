@@ -32,11 +32,11 @@ window.onload = function () {
             } else {
                 selectedPiece = this;
             }
-            event.stopPropagation(); // Prevent the cell's click event from firing
+            event.stopPropagation();
         });
     }
 
-    // Add click event listeners to the cells
+    // Add click event listeners to the board
     for (var i = 0; i < 8; i++) {
         for (var j = 0; j < 8; j++) {
             var cell = document.getElementById(i + "-" + j);
