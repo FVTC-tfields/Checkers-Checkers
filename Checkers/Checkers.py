@@ -1,3 +1,4 @@
+from tkinter import font
 import socketio
 import tkinter as tk
 from tkinter import messagebox
@@ -163,21 +164,85 @@ class Board:
                     piece.king = king
                     self.board[i][j] = piece
         self.print_board()
-
-
-class InitialScreen:
+        
+class LoginScreen:
     def __init__(self, game):
         self.root = tk.Tk()
         self.root.geometry("605x645")
         self.game = game
-        self.start_button = tk.Button(self.root, text="Start Game", command=self.start_game)
-        self.start_button.pack()
+
+        self.title_label = tk.Label(self.root, text="Checkers", font=("Arial", 48))
+        self.title_label.pack(pady=70)
+
+        self.username_label = tk.Label(self.root, text="Username", font=("Arial", 24))
+        self.username_label.pack()
+        self.username_entry = tk.Entry(self.root, font=("Arial", 24), width=20)
+        self.username_entry.pack()
+
+        self.password_label = tk.Label(self.root, text="Password", font=("Arial", 24))
+        self.password_label.pack()
+        self.password_entry = tk.Entry(self.root, show="*", font=("Arial", 24), width=20)
+        self.password_entry.pack()
+
+        self.login_button = tk.Button(self.root, text="Login", font=("Arial", 18), command=self.login, height=1, width=10)
+        self.login_button.pack(pady=20)
+
+        self.root.mainloop()
+
+    def login(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        if username == "bfoote" and password == "maple" or (username == "kvicchiollo" and password == "password") or (username == "tfields" and password == "larry"):
+            self.root.destroy()
+            InitialScreen(self.game, username)
+        else:
+            messagebox.showerror("Login failed", "Invalid username or password")
+
+
+class InitialScreen:
+    def __init__(self, game, username):
+        self.root = tk.Tk()
+        self.root.geometry("605x645")
+        self.game = game
+        self.username = username
+        
+        self.hello_label = tk.Label(self.root, text=f"Hello {self.username}", font=("Arial", 24))
+        self.hello_label.pack()
+        
+        self.start_button = tk.Button(self.root, text="Start Game", font=("Arial", 18), command=self.start_game, height=1, width=15)
+        self.start_button.pack(pady=20)
+        
+        self.previous_games_button = tk.Button(self.root, text="Previous Games", font=("Arial", 18), command=self.show_previous_games, height=1, width=15)
+        self.previous_games_button.pack(pady=20)
+        
         self.root.mainloop()
 
     def start_game(self):
         self.root.destroy()
         self.game.start_game()
+        
+    def show_previous_games(self):
+        self.root.destroy()
+        PreviousGames(self.game, self.username)
+        
 
+class PreviousGames:
+    def __init__(self, game, username):
+        self.root = tk.Tk()
+        self.root.geometry("605x645")
+        self.game = game
+        self.username = username
+
+        self.back_button = tk.Button(self.root, text="Back", font=("Arial", 18), command=self.go_back, height=1, width=10)
+        self.back_button.pack(pady=100)
+
+        self.root.mainloop()
+
+    def go_back(self):
+        self.root.destroy()
+        InitialScreen(self.game, self.username)
+        
 
 class Game:
     def __init__(self, sio):
@@ -196,7 +261,7 @@ class Game:
 sio = socketio.Client()
 
 game = Game(sio)
-initial_screen = InitialScreen(game)
+login_screen = LoginScreen(game)
 
 @sio.event
 def connect():
