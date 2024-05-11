@@ -1,7 +1,5 @@
-using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Reflection;
+using Checkers.PL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Checkers.API.Test
 {
@@ -20,6 +18,8 @@ namespace Checkers.API.Test
         public HttpClient client { get; }
         public Type type;
 
+        protected DbContextOptions<CheckersEntities> options;
+
         public utBase()
         {
             var application = new APIProject();
@@ -28,15 +28,13 @@ namespace Checkers.API.Test
         }
 
         [TestMethod]
-        public async Task LoadTestAsync<T>()
+        public async Task LoadTestAsync<T>(int expected)
         {
             dynamic items;
             var response = await client.GetStringAsync(typeof(T).Name);
             items = (JArray)JsonConvert.DeserializeObject(response);
             List<T> values = items.ToObject<List<T>>();
-
-            Assert.IsTrue(values.Count > 0);
-
+            Assert.IsTrue(values.Count == expected);
         }
 
         [TestMethod]
@@ -87,7 +85,6 @@ namespace Checkers.API.Test
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             HttpResponseMessage response = client.PostAsync(typeof(T).Name + "/" + rollback, content).Result;
             string result = response.Content.ReadAsStringAsync().Result;
-
 
             // Assert that the guid is not the same as an empty guid 00000000-0000000-
             Assert.IsFalse(result.Equals(0));
