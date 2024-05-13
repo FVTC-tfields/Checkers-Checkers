@@ -6,7 +6,9 @@
 }
 
 <p class="text-info ml-2">@ViewBag.Message</p>
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <div class="row ml-2">
     <div class="col-md-4">
         <form asp-action="Login">
@@ -21,6 +23,7 @@
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-success" />
             </div>

@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Checkers";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Checkers</h1>
+</div>
+
+<hr />
+
+<div id="board">
+    @for (var i = 0; i < 8; i++)
+    {
+        <div class="row">
+            @for (var j = 0; j < 8; j++)
+            {
+                <div class="cell @(i % 2 == j % 2 ? "white" : "black")" id="@i-@j">
+                    @if (i < 3 && (i + j) % 2 == 0)
+                    {
+                        <div class="piece player1"></div> <!-- Player 1's pieces -->
+                    }
+                    else if (i > 4 && (i + j) % 2 == 0)
+                    {
+                        <div class="piece player2"></div> <!-- Player 2's pieces -->
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/game.js"></script>
+}
+
+<style>
+    .row {
+        display: flex;
+    }
+
+    .cell {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .white {
+        background-color: white;
+    }
+
+    .black {
+        background-color: black;
+    }
+
+    .piece {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .player1 {
+        background-color: red;
+    }
+
+    .player2 {
+        background-color: black;
+    }
+</style>

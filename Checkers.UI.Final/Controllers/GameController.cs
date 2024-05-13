@@ -1,3 +1,5 @@
+using BDF.Utility;
+
 namespace Checkers.UI.Final.Controllers
 {
     public class GameController : GenericController<Game>
