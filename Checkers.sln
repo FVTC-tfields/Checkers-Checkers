@@ -27,7 +27,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Checkers", "Checkers\Checke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BDF.Utility", "BDF.Utility\BDF.Utility.csproj", "{91689D9E-5227-4E13-ACB4-A2FC1A8B809B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkers.UI.Final", "Checkers.UI.Final\Checkers.UI.Final.csproj", "{F58DE10B-ACF7-4B58-85AF-DC8285E6E654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkers.UI.Final", "Checkers.UI.Final\Checkers.UI.Final.csproj", "{F58DE10B-ACF7-4B58-85AF-DC8285E6E654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Mvc;
+@using Checkers.BL.Models;
+@using Checkers.UI.Final.Extensions;
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,9 +33,34 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+
+                    <ul class="navbar-nav">
+                        @{
+                            if (Authenticate.IsAuthenticated(Context))
+                            {
+                                var fullName = HttpContextAccessor.HttpContext.Session.GetObject<User>("user").FullName;
+
+                                if (!string.IsNullOrEmpty(fullName)) fullName = fullName.Replace("\"", "");
+                                <li>
+                                    <span class="nav-link text-dark ">Welcome @fullName!</span>
+                                </li>
+                                <li>
+                                    <a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a class="nav-link text-dark" asp-controller="User" asp-action="Login">Login</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+
                 </div>
             </div>
-        </nav>
+           
+        </nav>        
     </header>
     <div class="container">
         <main role="main" class="pb-3">
