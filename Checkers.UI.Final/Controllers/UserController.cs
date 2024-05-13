@@ -52,7 +52,7 @@ namespace Checkers.UI.Final.Controllers
                     SetUser(user);
                 if (TempData["returnUrl"] != null)
                     return Redirect(TempData["returnUrl"]?.ToString());
-                return RedirectToAction(nameof(Index), "Movie");
+                return RedirectToAction(nameof(Index), "Home");
             }
             catch (Exception ex)
             {
