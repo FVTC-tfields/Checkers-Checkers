@@ -17,11 +17,11 @@
                 <div class="cell @(i % 2 == j % 2 ? "white" : "black")" id="@i-@j">
                     @if (i < 3 && (i + j) % 2 == 0)
                     {
-                        <div class="piece player1"></div> <!-- Player 1's pieces -->
+                        <div class="piece red"></div>
                     }
                     else if (i > 4 && (i + j) % 2 == 0)
                     {
-                        <div class="piece player2"></div> <!-- Player 2's pieces -->
+                        <div class="piece black"></div>
                     }
                 </div>
             }
@@ -61,11 +61,11 @@
         position: relative;
     }
 
-    .player1 {
+    .red {
         background-color: red;
     }
 
-    .player2 {
+    .black {
         background-color: black;
     }
 </style>

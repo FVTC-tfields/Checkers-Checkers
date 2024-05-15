@@ -12,6 +12,7 @@ window.onload = function () {
         if (captured) {
             var capturedCell = document.getElementById(captured[0] + "-" + captured[1]);
             capturedCell.removeChild(capturedCell.getElementsByClassName("piece")[0]);
+            checkEndOfGame();
         }
     });
 
@@ -20,6 +21,19 @@ window.onload = function () {
     }).catch(function (err) {
         return console.error(err.toString());
     });
+
+    function checkEndOfGame() {
+        var blackPieces = document.getElementsByClassName("piece black");
+        var redPieces = document.getElementsByClassName("piece red");
+
+        if (blackPieces.length === 0) {
+            alert("Red wins!");
+            // Game state logic
+        } else if (redPieces.length === 0) {
+            alert("Black wins!");
+            // Game state logic
+        }
+    }
 
     // Pieces
     var pieces = document.getElementsByClassName("piece");
@@ -41,6 +55,7 @@ window.onload = function () {
                     });
                     var capturedCell = document.getElementById(captured[0] + "-" + captured[1]);
                     capturedCell.removeChild(capturedCell.getElementsByClassName("piece")[0]);
+                    checkEndOfGame();
                     selectedPiece = null;
                 }
             } else {
@@ -73,6 +88,7 @@ window.onload = function () {
                         this.appendChild(selectedPiece);
                         var capturedCell = document.getElementById(captured[0] + "-" + captured[1]);
                         capturedCell.removeChild(capturedCell.getElementsByClassName("piece")[0]);
+                        checkEndOfGame();
                         selectedPiece = null;
                     }
                 }
