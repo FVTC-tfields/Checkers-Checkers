@@ -1,71 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Checkers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Checkers</h1>
+    <h1 class="display-4">Welcome to Checkers</h1>
+    <p>A game made by Simon Schick and Tyler Fields</p>
 </div>
 
-<hr />
+<br />
 
-<div id="board">
-    @for (var i = 0; i < 8; i++)
-    {
-        <div class="row">
-            @for (var j = 0; j < 8; j++)
-            {
-                <div class="cell @(i % 2 == j % 2 ? "white" : "black")" id="@i-@j">
-                    @if (i < 3 && (i + j) % 2 == 0)
-                    {
-                        <div class="piece red"></div>
-                    }
-                    else if (i > 4 && (i + j) % 2 == 0)
-                    {
-                        <div class="piece black"></div>
-                    }
-                </div>
-            }
-        </div>
-    }
+<div class="text-center">
+    <a class="btn btn-success btn-sm" asp-action="Index" asp-controller="Game">Browse Games</a>
+    <a class="btn btn-success btn-sm" asp-action="Index" asp-controller="User">Browse Users</a>
 </div>
-
-@section Scripts {
-    <script src="~/js/game.js"></script>
-}
-
-<style>
-    .row {
-        display: flex;
-    }
-
-    .cell {
-        width: 100px;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .white {
-        background-color: white;
-    }
-
-    .black {
-        background-color: black;
-    }
-
-    .piece {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        position: relative;
-    }
-
-    .red {
-        background-color: red;
-    }
-
-    .black {
-        background-color: black;
-    }
-</style>

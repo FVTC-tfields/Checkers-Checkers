@@ -40,8 +40,8 @@ namespace Checkers.BL
                 tblGame row = new tblGame { 
                     GameStateId = game.GameStateId,
                     Name = game.Name,
-                    Winner = game.Winner,
-                    GameDate = game.GameDate
+                    Winner = "",
+                    GameDate = DateTime.Now
                 };
                 game.Id = row.Id;
                 return base.Insert(row, e => e.Name == game.Name, rollback);
@@ -61,8 +61,8 @@ namespace Checkers.BL
                 tblGame row = new tblGame {
                     GameStateId = game.GameStateId,
                     Name = game.Name,
-                    Winner = game.Winner,
-                    GameDate = game.GameDate
+                    Winner = "",
+                    GameDate = DateTime.Now
                 };
                 Guid id = await InsertAsync(row, e => e.GameStateId == game.GameStateId, rollback);
                 game.Id = id;
