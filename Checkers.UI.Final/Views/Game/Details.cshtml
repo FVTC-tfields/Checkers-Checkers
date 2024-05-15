@@ -1,9 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Checkers";
+﻿@model Checkers.BL.Models.Game
+
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Checkers</h1>
+    <h1 class="display-4">@ViewBag.Title</h1>
 </div>
 
 <hr />
