@@ -57,19 +57,29 @@ window.onload = function () {
                 if (selectedPiece) {
                     var oldId = selectedPiece.parentNode.id.split("-").map(Number);
                     var newId = this.id.split("-").map(Number);
-                    if (Math.abs(newId[0] - oldId[0]) === 1 && Math.abs(newId[1] - oldId[1]) === 1) {
+                    var direction = selectedPiece.classList.contains("red") ? 1 : -1; // Red moves down, black moves up
+                    if (selectedPiece.classList.contains("king")) {
+                        direction = newId[0] - oldId[0] > 0 ? 1 : -1; // Kinged piece movement
+                    }
+                    if (Math.abs(newId[0] - oldId[0]) === 1 && Math.abs(newId[1] - oldId[1]) === 1 && newId[0] - oldId[0] === direction) {
                         connection.invoke("SendMove", oldId[0], oldId[1], newId[0], newId[1], null).catch(function (err) {
                             return console.error(err.toString());
                         });
                         this.appendChild(selectedPiece);
+                        if ((newId[0] === 0 && selectedPiece.classList.contains("black")) || (newId[0] === 7 && selectedPiece.classList.contains("red"))) {
+                            selectedPiece.classList.add("king"); // Kinged
+                        }
                         selectedPiece = null;
                         turn = turn === "black" ? "red" : "black"; // Switch turn
-                    } else if (Math.abs(newId[0] - oldId[0]) === 2 && Math.abs(newId[1] - oldId[1]) === 2) {
+                    } else if (Math.abs(newId[0] - oldId[0]) === 2 && Math.abs(newId[1] - oldId[1]) === 2 && newId[0] - oldId[0] === 2 * direction) {
                         var captured = [(oldId[0] + newId[0]) / 2, (oldId[1] + newId[1]) / 2];
                         connection.invoke("SendMove", oldId[0], oldId[1], newId[0], newId[1], captured).catch(function (err) {
                             return console.error(err.toString());
                         });
                         this.appendChild(selectedPiece);
+                        if ((newId[0] === 0 && selectedPiece.classList.contains("black")) || (newId[0] === 7 && selectedPiece.classList.contains("red"))) {
+                            selectedPiece.classList.add("king"); // Kinged
+                        }
                         var capturedCell = document.getElementById(captured[0] + "-" + captured[1]);
                         capturedCell.removeChild(capturedCell.getElementsByClassName("piece")[0]);
                         checkEndOfGame();
