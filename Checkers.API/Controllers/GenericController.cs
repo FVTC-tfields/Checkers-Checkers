@@ -17,6 +17,7 @@ namespace Checkers.API.Controllers
         protected DbContextOptions<CheckersEntities> options;
         protected readonly ILogger logger;
         dynamic manager;
+        //protected IUserService _userService;
 
         public GenericController(ILogger logger,
                                  DbContextOptions<CheckersEntities> options)
@@ -25,6 +26,16 @@ namespace Checkers.API.Controllers
             this.logger = logger;
             manager = (U)Activator.CreateInstance(typeof(U), logger, options);
         }
+
+        //public GenericController(IUserService userService,
+        //                  ILogger logger,
+        //                  DbContextOptions<CheckersEntities> options)
+        //{
+        //    this._userService = userService;
+        //    this.options = options;
+        //    this.logger = logger;
+        //    manager = (U)Activator.CreateInstance(typeof(U), logger, options);
+        //}
 
         //[Authorize]
         [HttpGet]
