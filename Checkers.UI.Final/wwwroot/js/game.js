@@ -4,6 +4,7 @@ window.onload = function () {
     var connection = new signalR.HubConnectionBuilder().withUrl("/gameHub").build();
 
     var selectedPiece = null;
+    var turn = "black";
 
     connection.on("ReceiveMove", function (oldX, oldY, newX, newY, captured) {
         var oldCell = document.getElementById(oldX + "-" + oldY);
@@ -40,25 +41,7 @@ window.onload = function () {
     for (var i = 0; i < pieces.length; i++) {
         pieces[i].addEventListener("click", function (event) {
             console.log('Piece clicked');
-            if (selectedPiece) {
-                var oldId = selectedPiece.parentNode.id.split("-").map(Number);
-                var newId = this.parentNode.id.split("-").map(Number);
-                if (Math.abs(newId[0] - oldId[0]) === 1 && Math.abs(newId[1] - oldId[1]) === 1) {
-                    connection.invoke("SendMove", oldId[0], oldId[1], newId[0], newId[1], null).catch(function (err) {
-                        return console.error(err.toString());
-                    });
-                    selectedPiece = null;
-                } else if (Math.abs(newId[0] - oldId[0]) === 2 && Math.abs(newId[1] - oldId[1]) === 2) {
-                    var captured = [(oldId[0] + newId[0]) / 2, (oldId[1] + newId[1]) / 2];
-                    connection.invoke("SendMove", oldId[0], oldId[1], newId[0], newId[1], captured).catch(function (err) {
-                        return console.error(err.toString());
-                    });
-                    var capturedCell = document.getElementById(captured[0] + "-" + captured[1]);
-                    capturedCell.removeChild(capturedCell.getElementsByClassName("piece")[0]);
-                    checkEndOfGame();
-                    selectedPiece = null;
-                }
-            } else {
+            if (this.classList.contains(turn)) {
                 selectedPiece = this;
             }
             event.stopPropagation();
@@ -80,6 +63,7 @@ window.onload = function () {
                         });
                         this.appendChild(selectedPiece);
                         selectedPiece = null;
+                        turn = turn === "black" ? "red" : "black"; // Switch turn
                     } else if (Math.abs(newId[0] - oldId[0]) === 2 && Math.abs(newId[1] - oldId[1]) === 2) {
                         var captured = [(oldId[0] + newId[0]) / 2, (oldId[1] + newId[1]) / 2];
                         connection.invoke("SendMove", oldId[0], oldId[1], newId[0], newId[1], captured).catch(function (err) {
@@ -90,6 +74,7 @@ window.onload = function () {
                         capturedCell.removeChild(capturedCell.getElementsByClassName("piece")[0]);
                         checkEndOfGame();
                         selectedPiece = null;
+                        turn = turn === "black" ? "red" : "black"; // Switch turn
                     }
                 }
             });
