@@ -5,9 +5,9 @@ namespace Checkers.Hubs
 {
     public class GameHub : Hub
     {
-        public async Task SendMove(int oldX, int oldY, int newX, int newY)
+        public async Task SendMove(int oldX, int oldY, int newX, int newY, int[] captured)
         {
-            await Clients.Others.SendAsync("ReceiveMove", oldX, oldY, newX, newY);
+            await Clients.Others.SendAsync("ReceiveMove", oldX, oldY, newX, newY, captured);
         }
     }
 }
