@@ -1,5 +1,7 @@
 ﻿#nullable disable
 
+using Checkers.BL.Models;
+
 namespace Checkers.PL.Entities
 {
     public class tblGame : IEntity
@@ -10,8 +12,12 @@ namespace Checkers.PL.Entities
         public string Winner { get; set; }
         public DateTime GameDate { get; set; }
         public virtual tblGameState GameState { get; set; }
-        //public virtual ICollection<tblUserGame> tblUserGames { get; set; }
+        
         public string SortField { get { return Name; } }
+        public List<UserGame> Users { get; set; }
+        public List<GameState> gameStates { get; set; }
 
+        public virtual ICollection<tblUserGame> tblUserGames { get; set; }
+        public virtual ICollection<tblUserGame> tblGameStates { get; set; }
     }
 }

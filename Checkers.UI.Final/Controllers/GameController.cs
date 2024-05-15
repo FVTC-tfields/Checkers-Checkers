@@ -7,5 +7,6 @@ namespace Checkers.UI.Final.Controllers
         public GameController(HttpClient httpClient) : base(httpClient)
         {
         }
+
     }
 }

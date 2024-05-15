@@ -5,7 +5,7 @@ namespace Checkers.PL.Data
 {
     public class CheckersEntities : DbContext
     {
-        Guid[] userId = new Guid[4];
+        Guid[] userId = new Guid[5];
         Guid[] gameId = new Guid[4];
         Guid[] gameStateId = new Guid[5];
         Guid[] userGameId = new Guid[3];
@@ -233,6 +233,16 @@ namespace Checkers.PL.Data
                 UserName = "sophie",
                 Nickname = "Nickname",
                 Password = GetHash("sophie")
+            });
+
+            modelBuilder.Entity<tblUser>().HasData(new tblUser
+            {
+                Id = userId[3],
+                FirstName = "Simon",
+                LastName = "Schick",
+                UserName = "SchickS",
+                Nickname = "Schicks",
+                Password = GetHash("froggy")
             });
         }
 
