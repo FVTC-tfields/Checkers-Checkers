@@ -13,4 +13,41 @@
 <div class="text-center">
     <a class="btn btn-success btn-sm" asp-action="Index" asp-controller="Game">Browse Games</a>
     <a class="btn btn-success btn-sm" asp-action="Index" asp-controller="User">Browse Users</a>
+    <div style="margin-top: 10px;"><button id="startGameButton" class="btn btn-success" style="font-size: 20px; padding: 10px 20px;">Start Game</button></div>
 </div>
+
+<br />
+
+<div id="gameBoard" style="display: none;">
+    <div id="board">
+        @for (var i = 0; i < 8; i++)
+        {
+            <div class="row">
+                @for (var j = 0; j < 8; j++)
+                {
+                    <div class="cell @(i % 2 == j % 2 ? "white" : "black")" id="@i-@j">
+                        @if (i < 3 && (i + j) % 2 == 0)
+                        {
+                            <div class="piece red"></div>
+                        }
+                        else if (i > 4 && (i + j) % 2 == 0)
+                        {
+                            <div class="piece black"></div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@* Hide button and show game board *@
+@section Scripts {
+    <script>
+        document.getElementById('startGameButton').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('gameBoard').style.display = 'block';
+        });
+    </script>
+    <script src="~/js/game.js"></script>
+}
