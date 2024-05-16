@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
+﻿using Checkers.Reporting;
+using DocumentFormat.OpenXml.Bibliography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,15 @@ namespace Checkers.BL.Test
         {
             Game game = new GameManager(options).Load().FirstOrDefault(x => x.Name == "World War 42");
             Assert.IsTrue(new GameManager(options).Delete(game.Id, true) > 0);
+        }
+
+        [TestMethod]
+        public void utReportTest()
+        {
+            var entities = new GameManager(options).Load();
+            string[] columns = { "Name", "GameStateId", "Winner", "GameDate"};
+            var data = GameManager.ConvertData<Game>(entities, columns);
+            Excel.Export("games.xlsx", data);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Checkers.Reporting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,5 +57,14 @@ namespace Checkers.BL.Test
             GameState gameState = new GameStateManager(options).Load().FirstOrDefault();
             Assert.IsTrue(new GameStateManager(options).Delete(gameState.Id, true) > 0);
         }
+
+        //[TestMethod]
+        //public void utReportTest()
+        //{
+        //    var entities = new GameStateManager(options).Load();
+        //    string[] columns = { "Row", "Column", "Color", "IsKing" };
+        //    var data = GameStateManager.ConvertData<GameState>(entities, columns);
+        //    Excel.Export("gameStates.xlsx", data);
+        //}
     }
 }

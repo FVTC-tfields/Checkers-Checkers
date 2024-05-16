@@ -9,8 +9,10 @@ namespace Checkers.BL.Models
     public class GameState
     {
         public Guid Id { get; set; }
+        public Guid GameId { get; set; }
         public string Row { get; set; }
         public string Column { get; set; }
+        public string Color { get; set; }
         public bool IsKing { get; set; }
 
     }

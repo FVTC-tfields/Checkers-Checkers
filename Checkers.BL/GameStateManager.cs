@@ -131,6 +131,31 @@
             }
         }
 
+        public List<GameState> LoadByGameId(Guid id)
+        {
+            try
+            {
+                List<GameState> rows = new List<GameState>();
+                base.Load()
+                    .ForEach(g => rows.Add(
+                        new GameState
+                        {
+                            Id = g.Id,
+                            Column = g.Column,
+                            IsKing = g.IsKing,
+                            Row = g.Row
+                        }));
+
+                return rows;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public int Update(GameState gameState, bool rollback = false)
         {
             try

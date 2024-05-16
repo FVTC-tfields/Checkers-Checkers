@@ -13,6 +13,8 @@ namespace Checkers.BL.Models
         public string Name { get; set; }
         public string Winner { get; set; }
         public DateTime GameDate { get; set; }
+        //public List<UserGame> Users { get; set; }
+        //public List<GameState> gameStates { get; set; }
 
     }
 }
